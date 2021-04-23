@@ -44,18 +44,18 @@ class TeamsController < ApplicationController
   end
 
   def change_leader
-     if current_user.owner?(@working_team)
-       @working_team.owner_id = params[:id]
-       @working_team.save
+    if current_user.owner?(@working_team)
+      @working_team.owner_id = params[:id]
+      @working_team.save
 
-       new_leader = @working_team.owner
-       NewLeaderMailer.new_leader_mail(new_leader).deliver
+      new_leader = @working_team.owner
+      NewLeaderMailer.new_leader_mail(new_leader).deliver
 
-       redirect_to team_path(@working_team), notice: I18n.t('views.messages.success_change_leader')
-     else
-       redirect_to team_path(@working_team), notice: I18n.t('views.messages.fail_change_leader')
-     end
-   end
+      redirect_to team_path(@working_team), notice: I18n.t('views.messages.success_change_leader')
+    else
+      redirect_to team_path(@working_team), notice: I18n.t('views.messages.fail_change_leader')
+    end
+  end
 
   def dashboard
     @team = current_user.keep_team_id ? Team.find(current_user.keep_team_id) : current_user.teams.first

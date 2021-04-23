@@ -29,6 +29,6 @@ class User < ApplicationRecord
 
   def owner?(team)
     self.id == team.owner_id
-  end
+  end 
 
 end
