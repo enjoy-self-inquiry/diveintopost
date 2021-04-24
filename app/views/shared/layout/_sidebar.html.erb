@@ -47,9 +47,7 @@
                   <% end %>
                 </li>
               <% end %>
-              <li class="nav-item">       <% if agenda.user_id == current_user.id || agenda.team.owner_id == current_user.id %>
-              <%= link_to t('views.button.delete'), agenda, method: :delete, data: { confirm: I18n.t('views.messages.confirm_agenda_destroy') }, class: 'nav-link d-inline-flex'%>
-            <% end %>
+              <li class="nav-item"> 
                 <%= link_to new_agenda_article_path(agenda), class: 'nav-link' do %>
                   <p>+ <%= I18n.t('views.messages.create_article') %></p>
                 <% end %>
